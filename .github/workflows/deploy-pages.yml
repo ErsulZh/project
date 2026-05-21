@@ -5,8 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -18,11 +21,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
@@ -34,15 +37,24 @@ jobs:
         run: npm run build:pages
         working-directory: frontend
 
-      - name: SPA fallback (client-side routes)
-        run: cp dist/index.html dist/404.html
-        working-directory: frontend
+      - name: Copy site to repository root
+        run: |
+          cp frontend/dist/index.html ./index.html
+          cp frontend/dist/index.html ./404.html
+          cp frontend/dist/favicon.svg ./favicon.svg
+          rm -rf ./assets
+          cp -r frontend/dist/assets ./assets
+          touch .nojekyll
 
-      - name: Disable Jekyll
-        run: touch dist/.nojekyll
-        working-directory: frontend
+      - name: Commit built site files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html 404.html favicon.svg assets .nojekyll
+          git diff --staged --quiet || git commit -m "Deploy static site to repository root"
+          git push
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: frontend/dist
 
