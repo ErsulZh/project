@@ -1,0 +1,13 @@
+{
+  "name": "news-analytics-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "backend": "python backend/app.py",
+    "frontend": "npm run start --prefix frontend",
+    "start": "node scripts/start.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

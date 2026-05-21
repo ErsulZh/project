@@ -1,0 +1,676 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, #1e293b, #020617);
+  color: #e5e7eb;
+}
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 7vw;
+  backdrop-filter: blur(16px);
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.9),
+    rgba(15, 23, 42, 0.7),
+    transparent
+  );
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.logo-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #a855f7, #4f46e5);
+  box-shadow: 0 0 18px rgba(129, 140, 248, 0.9);
+}
+
+.logo-text {
+  font-size: 1.05rem;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: #cbd5f5;
+  text-decoration: none;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  transition: 0.2s ease;
+}
+
+.nav-link:hover {
+  background: rgba(148, 163, 184, 0.1);
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+.nav-link-accent {
+  background: linear-gradient(to right, #4f46e5, #06b6d4);
+  color: white;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+}
+
+.nav-link-accent:hover {
+  filter: brightness(1.05);
+}
+
+.app-main {
+  flex: 1;
+  padding: 32px 7vw 48px;
+}
+
+.app-footer {
+  padding: 16px 7vw 22px;
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+  font-size: 0.82rem;
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.1rem, 3.1vw, 2.9rem);
+  margin: 12px 0 12px;
+}
+
+.hero-subtitle {
+  max-width: 520px;
+  color: #cbd5f5;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-header h2 {
+  margin: 0 0 4px;
+}
+
+.section-header p {
+  margin: 0;
+  color: #9ca3af;
+}
+
+.csv-btn {
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.7);
+  color: #dbeafe;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  height: fit-content;
+}
+
+.csv-btn:hover:not(:disabled) {
+  background: rgba(79, 70, 229, 0.24);
+  border-color: rgba(129, 140, 248, 0.85);
+}
+
+.csv-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.manual-visit-btn {
+  border: 1px solid rgba(129, 140, 248, 0.7);
+  background: linear-gradient(to right, rgba(79, 70, 229, 0.8), rgba(6, 182, 212, 0.8));
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.manual-visit-btn:hover {
+  filter: brightness(1.08);
+}
+
+.manual-visit-panel {
+  margin-top: 2px;
+}
+
+.manual-visit-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.manual-visit-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.manual-visit-fields input {
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(2, 6, 23, 0.7);
+  color: #e5e7eb;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+}
+
+.manual-visit-submit {
+  margin-top: 12px;
+}
+
+.manual-date-picker {
+  width: 100%;
+}
+
+.react-datepicker {
+  background: #0b1120;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  color: #e5e7eb;
+}
+
+.react-datepicker__header {
+  background: #111827;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header,
+.react-datepicker__day-name,
+.react-datepicker__day {
+  color: #e5e7eb;
+}
+
+.react-datepicker__day:hover {
+  background: rgba(79, 70, 229, 0.3);
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background: #4f46e5;
+}
+
+.news-card {
+  text-align: left;
+  padding: 18px 18px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: radial-gradient(circle at top left, #111827, #020617);
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.news-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.news-card p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.card-cta {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #a5b4fc;
+}
+
+.pill {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.16);
+  color: #7dd3fc;
+  font-size: 0.76rem;
+}
+
+.card {
+  border-radius: 18px;
+  padding: 18px 18px 14px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: radial-gradient(circle at top left, #020617, #0b1120);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.about-card {
+  background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.22), #0b1120);
+}
+
+.about-content p {
+  margin: 0 0 10px;
+}
+
+.about-code {
+  margin: 0;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(2, 6, 23, 0.5);
+  overflow: auto;
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+.highlight {
+  background: radial-gradient(circle at top left, #4f46e5, #0b1120);
+}
+
+.muted {
+  color: #9ca3af;
+}
+
+.error {
+  border-color: rgba(248, 113, 113, 0.8);
+  background: rgba(127, 29, 29, 0.7);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.stat-number {
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.delta-up {
+  color: #34d399;
+}
+
+.delta-down {
+  color: #fb7185;
+}
+
+.delta-neutral {
+  color: #e5e7eb;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.charts-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.chart-side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.chart-card canvas {
+  max-height: 280px;
+}
+
+.chart-range {
+  margin-top: -4px;
+  margin-bottom: 10px;
+  font-size: 0.86rem;
+}
+
+.chart-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chart-title {
+  margin: 0;
+}
+
+.trend-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.55);
+  color: #cbd5f5;
+  white-space: nowrap;
+}
+
+.trend-pill.up {
+  border-color: rgba(52, 211, 153, 0.55);
+  background: rgba(16, 185, 129, 0.12);
+  color: #bbf7d0;
+}
+
+.trend-pill.down {
+  border-color: rgba(251, 113, 133, 0.55);
+  background: rgba(244, 63, 94, 0.12);
+  color: #fecdd3;
+}
+
+.trend-pill.stable {
+  border-color: rgba(148, 163, 184, 0.35);
+  background: rgba(148, 163, 184, 0.08);
+  color: #e5e7eb;
+}
+
+.trend-text {
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-navigation {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.chart-nav-btn {
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.7);
+  color: #dbeafe;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.chart-nav-btn:hover:not(:disabled) {
+  background: rgba(79, 70, 229, 0.24);
+  border-color: rgba(129, 140, 248, 0.85);
+}
+
+.chart-nav-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.threshold-card {
+  margin-top: 8px;
+}
+
+.heatmap-card {
+  padding-bottom: 18px;
+}
+
+.heatmap-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.heatmap-title {
+  margin: 0;
+}
+
+.heatmap-subtitle {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.heatmap-grid {
+  margin-top: 12px;
+  display: grid;
+  gap: 6px;
+  align-items: center;
+}
+
+.heatmap-row-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  padding-right: 6px;
+}
+
+.heatmap-cell {
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(148, 163, 184, 0.06);
+  transition: transform 0.12s ease, filter 0.12s ease, border-color 0.12s ease;
+}
+
+.heatmap-cell:hover {
+  transform: translateY(-1px) scale(1.05);
+  filter: brightness(1.12);
+  border-color: rgba(125, 211, 252, 0.7);
+}
+
+.heatmap-legend {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+
+.heatmap-legend-bar {
+  display: inline-flex;
+  gap: 4px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(2, 6, 23, 0.35);
+}
+
+.heatmap-legend-step {
+  width: 14px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.threshold-input {
+  margin-top: 8px;
+  width: min(260px, 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(2, 6, 23, 0.7);
+  color: #e5e7eb;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+}
+
+.forecast-card {
+  margin-top: 18px;
+}
+
+.forecast-grid {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.forecast-head,
+.forecast-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 0.7fr) minmax(0, 1.2fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.forecast-head {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 6px 8px;
+}
+
+.forecast-row {
+  padding: 10px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(2, 6, 23, 0.35);
+}
+
+.forecast-date {
+  font-variant-numeric: tabular-nums;
+}
+
+.forecast-value {
+  font-variant-numeric: tabular-nums;
+  color: #e5e7eb;
+}
+
+.forecast-change {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.forecast-bar {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.18);
+  overflow: hidden;
+}
+
+.forecast-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(to right, #4f46e5, #06b6d4);
+  width: 0%;
+}
+
+.week-summary-grid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.week-summary-item {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(2, 6, 23, 0.35);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.week-summary-item strong {
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .charts-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .chart-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .heatmap-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-main {
+    padding-inline: 18px;
+  }
+  .app-header,
+  .app-footer {
+    padding-inline: 18px;
+  }
+}
+
